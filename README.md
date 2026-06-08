@@ -177,6 +177,8 @@ docker system prune -a             # Clear Docker cache
 
 ---
 
+## Screenshots
+
 <img width="828" height="673" alt="image" src="https://github.com/user-attachments/assets/95aa3a81-ea86-46b2-8396-0bd2d5a7852d" />
 
 <img width="677" height="584" alt="image" src="https://github.com/user-attachments/assets/82171246-382b-4922-aa1b-23810422538b" />
