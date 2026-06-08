@@ -41,8 +41,8 @@ public class RegistrationController {
                         LocalDateTime.now()
                 );
 
-        rabbitTemplate.convertAndSend(
-                "user-registration",
+        rabbitTemplate.convertAndSend("Direct-Exchange",
+                "register",
                 message);
 
         return ResponseEntity.ok(
