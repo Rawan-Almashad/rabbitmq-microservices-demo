@@ -146,6 +146,23 @@ rabbitmq-app/
 
 ---
 
+## RabbitMQ Configuration
+
+| Component     | Name                |
+|---------------|---------------------|
+| Exchange      | `Direct-Exchange`   |
+| Exchange Type | Direct              |
+| Queue         | `user-registration` |
+| Routing Key   | `register`          |
+
+The Producer publishes a message to `Direct-Exchange` with routing key `register`. RabbitMQ routes it to the `user-registration` queue, where the Consumer's `UserRegistrationListener` picks it up and processes it.
+
+```
+Producer ──▶ Direct-Exchange ──[register]──▶ user-registration queue ──▶ Consumer
+```
+
+---
+
 ## Useful Commands
 
 ```bash
