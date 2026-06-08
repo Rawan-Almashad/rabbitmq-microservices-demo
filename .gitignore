@@ -1,0 +1,34 @@
+# Compiled files
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Log files
+*.log
+logs/
+
+# Docker
+*.pid
+*.pid.lock
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Application specific
+application-local.properties
+*.orig
+*.tmp
