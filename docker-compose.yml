@@ -9,7 +9,6 @@ services:
       - "5672:5672"
       - "15672:15672"
 
-  # Producer Service
   producer:
     build: ./producer
     container_name: producer
@@ -18,7 +17,6 @@ services:
     depends_on:
       - rabbitmq
 
-  # Consumer Service
   consumer:
     build: ./consumer
     container_name: consumer
@@ -26,3 +24,12 @@ services:
       - "8082:8082"
     depends_on:
       - rabbitmq
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - producer
+      - consumer
