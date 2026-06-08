@@ -177,6 +177,20 @@ docker system prune -a             # Clear Docker cache
 
 ---
 
+<img width="828" height="673" alt="image" src="https://github.com/user-attachments/assets/95aa3a81-ea86-46b2-8396-0bd2d5a7852d" />
+
+<img width="677" height="584" alt="image" src="https://github.com/user-attachments/assets/82171246-382b-4922-aa1b-23810422538b" />
+
+<img width="678" height="229" alt="image" src="https://github.com/user-attachments/assets/54d28039-34b5-42f5-a6d6-f7d6b882766e" />
+
+<img width="789" height="291" alt="image" src="https://github.com/user-attachments/assets/a12407a3-263c-45ba-ad93-9905d75d1c14" />
+
+<img width="1217" height="472" alt="image" src="https://github.com/user-attachments/assets/050d84cc-4a8f-489a-84cd-dda224f6db25" />
+
+
+
+
+
 ## License
 
 Educational use only.
