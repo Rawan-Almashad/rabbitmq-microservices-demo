@@ -118,6 +118,8 @@ rabbitmq-app/
 │   ├── Dockerfile
 │   └── pom.xml
 │
+├── docs/
+│   └── screenshots/
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
@@ -163,6 +165,43 @@ Producer ──▶ Direct-Exchange ──[register]──▶ user-registration q
 
 ---
 
+## Screenshots
+
+### 1. Exchange & Queue Binding — RabbitMQ Management
+`Direct-Exchange` configured as a direct exchange and bound to the `user-registration` queue using routing key `register`.
+
+<img width="828" height="673" alt="image" src="https://github.com/user-attachments/assets/95aa3a81-ea86-46b2-8396-0bd2d5a7852d" />
+
+---
+
+### 2. User Registration Form
+The registration form served by the Frontend at `http://localhost:8081`.
+
+<img width="677" height="584" alt="image" src="https://github.com/user-attachments/assets/82171246-382b-4922-aa1b-23810422538b" />
+
+---
+
+### 3. Successful Registration
+Confirmation screen after a user is successfully registered and the event is published to RabbitMQ.
+
+<img width="678" height="229" alt="image" src="https://github.com/user-attachments/assets/54d28039-34b5-42f5-a6d6-f7d6b882766e" />
+
+---
+
+### 4. Queue with 1 Message Ready — RabbitMQ Management
+The `user-registration` queue showing 1 message ready, confirming the Producer successfully published the event.
+
+<img width="789" height="291" alt="image" src="https://github.com/user-attachments/assets/a12407a3-263c-45ba-ad93-9905d75d1c14" />
+
+---
+
+### 5. Consumer Receiving the Message — CLI
+The Consumer service logs showing the message was received from the queue and processed by `UserRegistrationListener`.
+
+<img width="1217" height="472" alt="image" src="https://github.com/user-attachments/assets/050d84cc-4a8f-489a-84cd-dda224f6db25" />
+
+---
+
 ## Useful Commands
 
 ```bash
@@ -176,22 +215,6 @@ docker system prune -a             # Clear Docker cache
 ```
 
 ---
-
-## Screenshots
-
-<img width="828" height="673" alt="image" src="https://github.com/user-attachments/assets/95aa3a81-ea86-46b2-8396-0bd2d5a7852d" />
-
-<img width="677" height="584" alt="image" src="https://github.com/user-attachments/assets/82171246-382b-4922-aa1b-23810422538b" />
-
-<img width="678" height="229" alt="image" src="https://github.com/user-attachments/assets/54d28039-34b5-42f5-a6d6-f7d6b882766e" />
-
-<img width="789" height="291" alt="image" src="https://github.com/user-attachments/assets/a12407a3-263c-45ba-ad93-9905d75d1c14" />
-
-<img width="1217" height="472" alt="image" src="https://github.com/user-attachments/assets/050d84cc-4a8f-489a-84cd-dda224f6db25" />
-
-
-
-
 
 ## License
 
