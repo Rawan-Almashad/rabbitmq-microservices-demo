@@ -1,35 +1,84 @@
 version: '3.8'
 
 services:
-  # RabbitMQ - Message broker
+
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   producer:
     build: ./producer
     container_name: producer
     ports:
-      - "8080:8080"
+      - "8082:8082"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      - eureka.instance.prefer-ip-address=true
+      - spring.rabbitmq.host=rabbitmq
     depends_on:
-      - rabbitmq
+      eureka-server:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   consumer:
     build: ./consumer
     container_name: consumer
     ports:
-      - "8082:8082"
+      - "8083:8083"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      - eureka.instance.prefer-ip-address=true
+      - spring.rabbitmq.host=rabbitmq
     depends_on:
-      - rabbitmq
+      eureka-server:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   frontend:
     build: ./frontend
     container_name: frontend
     ports:
       - "8081:8081"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      - eureka.instance.prefer-ip-address=true
     depends_on:
-      - producer
-      - consumer
+      eureka-server:
+        condition: service_healthy
+      producer:
+        condition: service_started
+      consumer:
+        condition: service_started
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      - eureka.instance.prefer-ip-address=true
+    depends_on:
+      eureka-server:
+        condition: service_healthy
