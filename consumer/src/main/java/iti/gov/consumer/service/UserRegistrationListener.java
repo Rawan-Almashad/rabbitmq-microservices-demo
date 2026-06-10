@@ -2,6 +2,9 @@ package iti.gov.consumer.service;
 
 
 import iti.gov.consumer.dto.UserRegisteredEvent;
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +23,11 @@ public class UserRegistrationListener {
     }
 
 
-    @RabbitListener(queues = "user-registration")
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "user-registration", durable = "true"),
+            exchange = @Exchange(value = "Direct-Exchange", type = "direct"),
+            key = "register"
+    ))
     public void handleUserRegistration(UserRegisteredEvent message) {
         System.out.println("New user registered!");
         System.out.println("Name: " + message.getFirstname() + " " + message.getLastname());

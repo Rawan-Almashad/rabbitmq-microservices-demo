@@ -21,7 +21,7 @@
     <div th:if="${success}" class="success" th:text="${message}"></div>
     <div th:if="${error}" class="error" th:text="${error}"></div>
 
-    <form action="/register" method="post" th:object="${user}">
+    <form th:action="@{/frontend/register}" method="post" th:object="${user}">
         <div class="form-group">
             <label>First Name:</label>
             <input type="text" th:field="*{firstname}" required>
