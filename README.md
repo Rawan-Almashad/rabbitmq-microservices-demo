@@ -8,8 +8,8 @@ A microservices demo using **Spring Boot**, **RabbitMQ**, **MySQL**, **Eureka Se
 
 ```
                         ┌─────────────────────────────────────┐
-                        │         Eureka Server :8761          │
-                        │         (Service Registry)           │
+                        │         Eureka Server :8761         │
+                        │         (Service Registry)          │
                         └──────────────┬──────────────────────┘
                                        │
                  ┌─────────────────────┼──────────────────────┐
@@ -18,7 +18,7 @@ A microservices demo using **Spring Boot**, **RabbitMQ**, **MySQL**, **Eureka Se
                  └─────────────────────┼──────────────────────┘
                                        │
                         ┌──────────────┴──────────────────────┐
-                        │        API Gateway :8080             │
+                        │        API Gateway :8080            │
                         └──────────────┬──────────────────────┘
                                        ↑
                                     Client
